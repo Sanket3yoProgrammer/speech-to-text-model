@@ -1,0 +1,113 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: linear-gradient(135deg, #283c86, #45a247);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 3rem;
+    margin: 0 auto;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+#startButton {
+    font-size: 1.5rem;
+    padding: 15px 30px;
+    border: none;
+    color: #ffffff;
+    background: #ff8c00;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#startButton:hover {
+    background: #ffa500;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+}
+
+#startButton:active {
+    background: #e07b00;
+    transform: scale(0.98);
+}
+
+#output {
+    margin-top: 20px;
+    width: 600px;
+    font-size: 1.2rem;
+    padding: 20px;
+    max-width: 90%;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+    min-height: 100px;
+    overflow-y: auto;
+    animation: slideUp 1s ease-in-out forwards;
+}
+
+/* Add subtle animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scrollbar styling */
+#output::-webkit-scrollbar {
+    width: 8px;
+}
+
+#output::-webkit-scrollbar-thumb {
+    background: #ffa500;
+    border-radius: 4px;
+}
+
+#output::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Decorative elements */
+body::before, body::after {
+    content: '';
+    position: absolute;
+    top: -50px;
+    bottom: -50px;
+    left: -50px;
+    right: -50px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
+    z-index: -1;
+    opacity: 0.2;
+    animation: rotateBg 20s linear infinite;
+}
+
+@keyframes rotateBg {
+    0% { transform: rotate(0); }
+    100% { transform: rotate(360deg); }
+}
