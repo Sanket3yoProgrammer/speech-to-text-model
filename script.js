@@ -56,7 +56,8 @@ recognition.addEventListener('result', (e) => {
         finalTranscript = transcript;
         output.textContent = finalTranscript;
 
-        // Send the transcription result to the Flask server
+
+
         fetch("http://localhost:5000/transcription", {
             method: "POST",
             headers: {
@@ -67,6 +68,18 @@ recognition.addEventListener('result', (e) => {
         .then(response => response.text())
         .then(data => console.log("Server response:", data))
         .catch(error => console.error("Error:", error));
+
+        // // Send the transcription result to the Flask server
+        // fetch("http://localhost:5000/transcription", {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({ text: finalTranscript })
+        // })
+        // .then(response => response.text())
+        // .then(data => console.log("Server response:", data))
+        // .catch(error => console.error("Error:", error));
     }
 });
 
