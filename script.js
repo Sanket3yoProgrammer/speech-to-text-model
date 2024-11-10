@@ -26,26 +26,49 @@ document.addEventListener('click', () => {
     }
 }, { once: true }); // Runs only once
 
+// recognition.addEventListener('result', (e) => {
+//     const transcript = Array.from(e.results).map(result => result[0].transcript).join('');
+
+//     if (e.results[0].isFinal) {
+//         finalTranscript = transcript;
+//         output.textContent = finalTranscript;
+//     }
+// });
+
+// recognition.addEventListener('end', () => {
+//     recognition.start();  // Restart listening automatically
+// });
+
+// document.addEventListener('keydown', (e) => {
+//     if (e.key === 'Escape') {
+//         recognition.stop();
+//     }
+// });
+
+
+// const output = document.getElementById("output");
+// let finalTranscript = "";
+
 recognition.addEventListener('result', (e) => {
     const transcript = Array.from(e.results).map(result => result[0].transcript).join('');
 
     if (e.results[0].isFinal) {
         finalTranscript = transcript;
         output.textContent = finalTranscript;
+
+        // Send the transcription result to the Flask server
+        fetch("http://localhost:5000/transcription", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ text: finalTranscript })
+        })
+        .then(response => response.text())
+        .then(data => console.log("Server response:", data))
+        .catch(error => console.error("Error:", error));
     }
 });
-
-recognition.addEventListener('end', () => {
-    recognition.start();  // Restart listening automatically
-});
-
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        recognition.stop();
-    }
-});
-
-
 
 
 
