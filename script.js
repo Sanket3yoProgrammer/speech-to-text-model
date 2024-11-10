@@ -1,5 +1,5 @@
 const output = document.getElementById("output");
-const startButton = document.getElementById("startButton");
+// const startButton = document.getElementById("startButton");
 
 let finalTranscript = "";
 
@@ -8,16 +8,16 @@ const SpeechRecognition = window.SpeechRecognition ||  window.webkitSpeechRecogn
 const recognition = new SpeechRecognition();
 recognition.lang = "en-US";
 recognition.interimResults = true;
-startButton.addEventListener("click", () => {
-    finalTranscript = '';
-    output.textContent = '';
-    recognition.start();
-    startButton.textContent = 'Listening....';
-});
+// startButton.addEventListener("click", () => {
+//     finalTranscript = '';
+//     output.textContent = '';
+//     recognition.start();
+//     startButton.textContent = 'Listening....';
+// });
 
-startButton.onclick = () => {
-    startButton.textContent = 'Listening...';
-};
+// startButton.onclick = () => {
+//     startButton.textContent = 'Listening...';
+// };
 
 recognition.addEventListener('result', (e)=> {
     const transcript = Array.from(e.results).map(result => 
@@ -29,15 +29,26 @@ recognition.addEventListener('result', (e)=> {
     }
 });
 
+// recognition.addEventListener('end', () => {
+//     startButton.textContent = 'startButton';
+//     // startButton.textContent = 'listening....';
+//     recognition.start();
+// });
+
 recognition.addEventListener('end', () => {
-    startButton.textContent = 'startButton';
-    // startButton.textContent = 'listening....';
     recognition.start();
 });
 
-document.addEventListener('keydown', (e) => { 
-    if (e.key == 'Escape') {
+
+// document.addEventListener('keydown', (e) => { 
+//     if (e.key == 'Escape') {
+//         recognition.stop();
+//         startButton.textContent = 'startButton';
+//     }
+// });
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
         recognition.stop();
-        startButton.textContent = 'startButton';
     }
 });
